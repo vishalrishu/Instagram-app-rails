@@ -5,7 +5,7 @@ ruby '2.6.6'
 
 gem 'devise'
 gem 'pg'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 gem 'mini_magick'
