@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
 
   def show
-    @user  = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc)
+    @user = User.find(params[:id])
+    @posts = User.get_posts(params[:id])
   end
 
   def edit

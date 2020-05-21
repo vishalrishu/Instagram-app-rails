@@ -9,7 +9,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(post_params)
+    @post = Post.create(post_params)
+    if @post.save
+      redirect_to root_path
+    else
+      @posts = Post.paginate(page: params[:page], per_page: 15).order('created_at DESC')
+      render :index
+    end
     redirect_to root_path
   end
 
@@ -20,21 +26,30 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update post_params
-    redirect_to @post
+    if @post.update(post_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def destroy
     @post = current_user.posts.find(params[:id])
-    @post.destroy
-
-    redirect_to root_path
+    if @post.id?
+      @post.destroy
+      redirect_to root_path, success: "Post deleted"
+    else
+      redirect_to root_path, error: "Post doesn't exist"
+    end
   end
 
   private
 
   def set_post
-    @post  = Post.find(params[:id])
+    @post  = Post.find_by(id: params[:id]) 
+    if @post.nil?
+      redirect_to root_path, error: "Post doesn't exist"
+    end
   end
   def post_params
     params.require(:post).permit(:description, :image, :user_id)

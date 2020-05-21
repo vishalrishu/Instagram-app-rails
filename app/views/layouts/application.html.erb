@@ -37,7 +37,18 @@
 
     <!--Main content-->
     <main class="container" style="min-height: 500px;">
+      
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>  
+      <% if error %>
+        <p class="alert alert-danger"><%= error %></p>
+      <% end %>
+      <% if success %>
+        <p class="success"><%= success %></p>
+      <% end %>      
       <%= yield %>
+      
     </main>
 
     <!--Footer-->

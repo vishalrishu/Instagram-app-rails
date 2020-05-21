@@ -5,4 +5,10 @@ class User < ApplicationRecord
        :recoverable, :rememberable, :trackable, :validatable
   has_many :posts, dependent: :destroy
   has_one_attached :avatar
+
+  def self.get_posts(user_id)
+    @user  = User.find(user_id)
+    @posts = @user.posts.order(created_at: :desc)
+  end
+
 end
