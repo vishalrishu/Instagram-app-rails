@@ -16,7 +16,6 @@ class PostsController < ApplicationController
       @posts = Post.paginate(page: params[:page], per_page: 15).order('created_at DESC')
       render :index
     end
-    redirect_to root_path
   end
 
   def show

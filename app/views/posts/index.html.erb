@@ -8,11 +8,9 @@
       <section class="post">
         <div class="user">
           <div class="avatar">
-              <% if post.user.avatar.attached? %>
-                <%= link_to user_path(post.user) do %>
-                  <%= image_tag post.user.avatar if post.user.avatar.attached? %>
-                <% end %>
-              <% end %>
+            <%= link_to user_path(post.user) do %>
+              <%= image_tag post.user.avatar if post.user.avatar.present?%>
+            <% end %>
           </div>
           <%= link_to post.user.username, user_path(post.user), class: 'username' %>
         </div>
