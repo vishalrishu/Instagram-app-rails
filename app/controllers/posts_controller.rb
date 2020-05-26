@@ -8,7 +8,7 @@ class PostsController < ApplicationController
           if elm.user.avatar.attached?
             elm.avatar = elm.user.avatar
           else
-            elm = nil 
+            elm.avatar = nil 
           end
         end  
     else
