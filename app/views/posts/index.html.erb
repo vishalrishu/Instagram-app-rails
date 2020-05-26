@@ -9,7 +9,7 @@
         <div class="user">
           <div class="avatar">
             <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.avatar if post.user.avatar.present?%>
+              <%= image_tag post.avatar if post.avatar != nil%>
             <% end %>
           </div>
           <%= link_to post.user.username, user_path(post.user), class: 'username' %>

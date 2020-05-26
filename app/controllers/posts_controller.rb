@@ -2,7 +2,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   def index
     if current_user
-        @posts = Post.paginate(page: params[:page], per_page: 15).order('created_at DESC')
+        @posts = Post.paginate(page: params[:page], per_page: 6).order('created_at DESC')
+
+        @posts.each do |elm|
+          if elm.user.avatar.attached?
+            elm.avatar = elm.user.avatar
+          else
+            elm = nil 
+          end
+        end  
     else
         redirect_to new_user_session_path
     end  
