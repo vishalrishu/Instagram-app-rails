@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'home/index'
-  root 'home#index'
-  resources :users, only: [:show, :edit, :update]
-  resources :posts, only: [:new, :create, :show, :destroy]
+  get 'posts/index'
+  root 'posts#index'
+  resources :users
+  resources :posts
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

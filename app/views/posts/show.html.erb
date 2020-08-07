@@ -13,13 +13,12 @@
       </div>
       <%= link_to @post.user.username, user_path(@post.user), class: 'username' %>
     </div>
-    <div class="description">
-      <%= render partial: "description", locals: {post: @post} %>
-    </div>
+    <%= @post.description %>
     <div class="delete">
       <% if current_user.posts.exists?(@post.id) %>
         <%= link_to 'Remove', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
+    <%= link_to "Back To Home",root_path%>
   </div>
 </div>
