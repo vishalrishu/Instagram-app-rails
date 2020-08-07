@@ -6,25 +6,24 @@
   <div class="posts">
     <% @posts.each do |post| %>
       <section class="post">
-  <div class="user">
-    <div class="avatar">
-      <% if post.user.avatar.attached? %>
-        <%= link_to user_path(post.user) do %>
-          <%= image_tag post.user.avatar if post.user.avatar.attached? %>
+        <div class="user">
+          <div class="avatar">
+            <%= link_to user_path(post.user) do %>
+              <%= image_tag post.avatar if post.avatar != nil%>
+            <% end %>
+          </div>
+          <%= link_to post.user.username, user_path(post.user), class: 'username' %>
+        </div>
+        
+        <%= post.description %>
+        <% if post.image.attached? %>
+          <%= image_tag post.image , class: 'main-image' %>
         <% end %>
-      <% end %>
-    </div>
-    <%= link_to post.user.username, user_path(post.user), class: 'username' %>
-  </div>
-  <%= post.description %>
-  <% if post.image.attached? %>
-    <%= image_tag post.image , class: 'main-image' %>
-  <% end %>
-  
-  <%= link_to 'Edit', edit_post_path(post) %>
-  <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 
-</section>
+      </section>
 
     <% end %>
         

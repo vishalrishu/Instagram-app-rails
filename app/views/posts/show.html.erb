@@ -15,9 +15,7 @@
     </div>
     <%= @post.description %>
     <div class="delete">
-      <% if current_user.posts.exists?(@post.id) %>
         <%= link_to 'Remove', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
     </div>
     <%= link_to "Back To Home",root_path%>
   </div>
